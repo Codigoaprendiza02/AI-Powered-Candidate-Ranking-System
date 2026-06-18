@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+data/candidates.jsonl
+artifacts/*.npy
+artifacts/*.pkl
+outputs/*.csv
+*.log
+.DS_Store
+.ipynb_checkpoints/
+*India_runs_data_and_ai_challenge/

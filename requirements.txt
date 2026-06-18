@@ -1,0 +1,11 @@
+pandas
+numpy
+pyarrow
+jsonschema
+rank_bm25
+sentence-transformers
+scikit-learn
+pyyaml
+pytest
+psutil
+streamlit
