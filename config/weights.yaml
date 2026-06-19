@@ -1,0 +1,86 @@
+# Configuration Weights and Scoring Parameters for Candidate Ranking
+
+# ==============================================================================
+# Layer 3 - Structured Feature Scoring Weights
+# ==============================================================================
+structured_weights:
+  weight_title: 0.35      # Weight for job title matching
+  weight_skill: 0.45      # Weight for skill-trust evaluation
+  weight_location: 0.15   # Weight for location, notice period, and relocation
+  weight_education: 0.05  # Weight for education tier (minor weight per JD)
+
+# ==============================================================================
+# Title Tier Mapping and Career Combining
+# ==============================================================================
+title_scores:
+  S: 100.0  # Core Match (Recommendation systems, Search, NLP, Senior ML, etc.)
+  A: 80.0   # Adjacent AI/ML (Data Scientist, AI Engineer, CV, AI Specialist, etc.)
+  B: 50.0   # Tech / Engineering (Data Engineer, Software Engineer, Backend, etc.)
+  C: 20.0   # Generic Tech (Java Developer, Frontend, Mobile, QA, etc.)
+  D: 0.0    # Non-tech (Marketing, Customer Support, Civil, HR, etc.)
+
+title_combination_weights:
+  current_title_weight: 0.80
+  best_historical_title_weight: 0.20
+
+# ==============================================================================
+# Skill Family Mapping and Proficiency Weights
+# ==============================================================================
+skill_family_weights:
+  embeddings: 0.30     # Embeddings-based retrieval systems (sentence-transformers, Hugging Face, BGE)
+  vector_db: 0.25      # Vector databases or hybrid search (FAISS, Pinecone, Milvus, Weaviate, OpenSearch)
+  python: 0.20         # Strong Python & Engineering quality (scikit-learn, MLOps, MLflow, BentoML)
+  ranking: 0.15        # Ranking, Learning to Rank, Eval frameworks (XGBoost, NDCG, MRR, MAP)
+  llm: 0.10            # LLM fine-tuning / Nice-to-haves (LoRA, QLoRA, PEFT)
+
+skill_proficiency_weights:
+  beginner: 0.25
+  intermediate: 0.50
+  advanced: 0.75
+  expert: 1.00
+
+# ==============================================================================
+# Location and Relocation Scores
+# ==============================================================================
+location_scores:
+  in_city: 100.0       # Noida, Pune (JD primary cities)
+  regional: 80.0       # Tier-1 cities (Bangalore/Bengaluru, Mumbai, Hyderabad, Chennai, Kolkata, Gurgaon, Delhi)
+  relocatable: 60.0    # Willing to relocate (willing_to_relocate == true)
+  other: 20.0          # Stale location without relocation
+
+notice_period:
+  base_days: 30
+  penalty_scale: 150.0 # Notice period penalty: (notice_days - 30) / 150.0 * 30 points
+  max_penalty: 30.0    # Capped maximum penalty for notice period
+
+# ==============================================================================
+# Education Tier Scores
+# ==============================================================================
+education_scores:
+  tier_1: 10.0
+  tier_2: 7.0
+  tier_3: 4.0
+  tier_4: 1.0
+  unknown: 0.0
+
+# ==============================================================================
+# Layer 4 - Availability Multiplier Weights
+# ==============================================================================
+availability_weights:
+  weight_decay: 0.35      # Exponential decay based on inactivity days
+  weight_otw: 0.15        # open_to_work_flag
+  weight_response: 0.25   # recruiter_response_rate
+  weight_interview: 0.15  # interview_completion_rate
+  weight_offer: 0.10      # offer_acceptance_rate
+
+availability_decay:
+  half_life_days: 90.0    # Exp decay half-life in days
+
+availability_engagement:
+  search_appearances_weight: 0.05
+  saved_by_recruiters_weight: 0.05
+
+availability_verification_bonuses:
+  email_bonus: 0.02
+  phone_bonus: 0.02
+  linkedin_bonus: 0.02
