@@ -91,3 +91,11 @@ availability_verification_bonuses:
 retrieval:
   alpha: 0.4  # Weight for BM25 lexical score vs. dense embedding score
 
+# ==============================================================================
+# Layer 5 - Composite Scoring Weights
+# ==============================================================================
+composite_weights:
+  weight_semantic: 0.60    # w2: weight for retrieval (BM25 + dense) score
+  weight_structured: 0.40  # w3: weight for structured feature score
+
+
