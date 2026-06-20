@@ -84,3 +84,10 @@ availability_verification_bonuses:
   email_bonus: 0.02
   phone_bonus: 0.02
   linkedin_bonus: 0.02
+
+# ==============================================================================
+# Layer 2 - Retrieval (BM25 & Semantic Dense Scoring)
+# ==============================================================================
+retrieval:
+  alpha: 0.4  # Weight for BM25 lexical score vs. dense embedding score
+
