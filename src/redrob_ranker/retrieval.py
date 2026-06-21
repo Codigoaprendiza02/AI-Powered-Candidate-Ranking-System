@@ -43,11 +43,8 @@ def compute_retrieval_scores(artifacts_dir, jd_path, config_path, features_path)
     with open(ids_path, "rb") as f:
         candidate_ids = pickle.load(f)
     
-    embeddings = np.load(embeddings_path)
+    embeddings = np.load(embeddings_path, mmap_mode="r")
     jd_embedding = np.load(jd_embedding_path)
-    
-    with open(bm25_path, "rb") as f:
-        bm25_index = pickle.load(f)
 
     # 2. Load Config retrieval weights
     print(f"Loading retrieval configuration from {config_path}...")
@@ -86,6 +83,8 @@ def compute_retrieval_scores(artifacts_dir, jd_path, config_path, features_path)
         bm25_scores = np.load(bm25_scores_path)
     else:
         print("Job Description changed or precomputed scores missing. Computing BM25 scores dynamically...")
+        with open(bm25_path, "rb") as f:
+            bm25_index = pickle.load(f)
         jd_tokens = tokenize(jd_text)
         bm25_scores = np.array(bm25_index.get_scores(jd_tokens))
 
@@ -104,11 +103,10 @@ def compute_retrieval_scores(artifacts_dir, jd_path, config_path, features_path)
     })
 
     print(f"Loading eligible candidates list from {features_path}...")
-    features_df = pd.read_parquet(features_path)
-    eligible_ids = set(features_df["candidate_id"])
+    features_df = pd.read_parquet(features_path, columns=["candidate_id"])
     
-    print(f"Filtering to {len(eligible_ids)} eligible candidates...")
-    retrieval_df = all_df[all_df["candidate_id"].isin(eligible_ids)].copy()
+    print(f"Filtering to {len(features_df)} eligible candidates using merge...")
+    retrieval_df = pd.merge(all_df, features_df, on="candidate_id", how="inner")
     
     return retrieval_df
 
