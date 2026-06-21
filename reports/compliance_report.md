@@ -6,8 +6,8 @@ This report outlines the verified compute footprint of the candidate ranking pip
 
 | Constraint | Limit | Measured | Status |
 |---|---|---|---|
-| **Wall-Clock Runtime (Scoring)** | ≤ 300.0 seconds | 89.83 seconds | **PASS** |
-| **Peak RAM (RSS)** | ≤ 16.0 GB | 0.3257 GB | **PASS** |
+| **Wall-Clock Runtime (Scoring)** | ≤ 300.0 seconds | 84.47 seconds | **PASS** |
+| **Peak RAM (RSS)** | ≤ 16.0 GB | 0.3199 GB | **PASS** |
 | **Disk Footprint** | ≤ 5.0 GB | 0.3115 GB | **PASS** |
 
 ---
