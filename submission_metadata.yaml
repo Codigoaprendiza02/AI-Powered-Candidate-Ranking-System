@@ -1,0 +1,63 @@
+# Redrob Hackathon — Submission Metadata
+# ============================================================================
+# Team identity
+# ============================================================================
+team_name: "Antigravity"
+
+primary_contact:
+  name: "Riyan"
+  email: "riyan@example.com"
+  phone: "+91-XXXXXXXXXX"
+
+team_members:
+  - name: "Riyan"
+    email: "riyan@example.com"
+    role: "ML Engineer"
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: "https://github.com/Codigoaprendiza02/AI-Powered-Candidate-Ranking-System"
+sandbox_link: "https://ai-powered-candidate-ranking-system.streamlit.app"
+
+reproduce_command: "python -m src.redrob_ranker.rank --candidates data/candidates.jsonl --out outputs/team_xxx.csv"
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "Local PC"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.13.5"
+  os: "Windows 11"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: true
+  pre_computation_time_minutes: 5
+
+# ============================================================================
+# AI tools declaration
+# ============================================================================
+ai_tools_used:
+  - "Antigravity"
+  - "Gemini"
+
+ai_usage_summary: |
+  Used the Antigravity agent for architectural planning, refactoring the modular retrieval logic, optimizing dataframe performance (achieving a 28x speedup from 7s to 0.25s for candidate filtering using Pandas merge), designing the custom Streamlit CSS dark mode sandbox, and writing comprehensive test suites. No candidate data was sent to external APIs.
+
+# ============================================================================
+# Approach summary
+# ============================================================================
+methodology_summary: |
+  A robust four-layer candidate ranking pipeline optimized for offline execution. Layer 1 hard-filters adversarial/consulting-only traps and flags honeypots (0.045% rate). Layer 2 merges lexical (BM25 Okapi) and semantic (MiniLM-L6-v2 embeddings) similarities precomputed offline. Layer 3 evaluates structured roles (enforceable 47-title taxonomy) and endorsement/duration-weighted skill trust. Layer 4 scales scores by platform availability and response rates. Strict tie-breakers and float adjustments prevent rank order errors. Completes in ~87 seconds with a footprint of ~0.32 GB RAM.
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
