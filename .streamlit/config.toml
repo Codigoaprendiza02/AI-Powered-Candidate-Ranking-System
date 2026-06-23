@@ -1,0 +1,9 @@
+[server]
+maxUploadSize = 5
+
+[theme]
+primaryColor = "#00FFA3" # Neon Mint/Teal
+backgroundColor = "#0F0F1A" # Deep Space Dark Blue
+secondaryBackgroundColor = "#1E1E30" # Glassmorphic Navy
+textColor = "#E5E5E9" # Crisp white/grey
+font = "sans serif"
