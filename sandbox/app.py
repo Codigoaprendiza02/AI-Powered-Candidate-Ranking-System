@@ -542,7 +542,7 @@ if len(candidates) > 0:
     joined_display = sorted_df.merge(
         pd.DataFrame([{
             "candidate_id": c["candidate_id"],
-            "name": c["profile"].get("name", "N/A"),
+            "name": c["profile"].get("anonymized_name", "N/A"),
             "current_title": c["profile"].get("current_title", "N/A"),
             "current_company": c["profile"].get("current_company", "N/A"),
             "yoe": c["profile"].get("years_of_experience", 0),
@@ -583,7 +583,7 @@ if len(candidates) > 0:
         col_prof1, col_prof2 = st.columns(2)
         with col_prof1:
             st.markdown("#### Stated Resume Info")
-            st.write(f"**Name**: {c_inspect['profile'].get('name', 'N/A')}")
+            st.write(f"**Name**: {c_inspect['profile'].get('anonymized_name', 'N/A')}")
             st.write(f"**Current Role**: {c_inspect['profile'].get('current_title', 'N/A')} at {c_inspect['profile'].get('current_company', 'N/A')}")
             st.write(f"**Experience**: {c_inspect['profile'].get('years_of_experience', 0)} years")
             st.write(f"**Location**: {c_inspect['profile'].get('location', 'N/A')} ({c_inspect['profile'].get('country', 'N/A')})")
